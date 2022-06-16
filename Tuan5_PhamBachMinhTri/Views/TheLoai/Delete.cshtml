@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<fieldset>
+    <p>
+        <div class="display-label"> Ma Loai: @Html.Encode(Model.maloai)</div>
+        <div class="display-label"> Ten Loai: @Html.Encode(Model.tenlaoi)</div>
+
+    </p>
+</fieldset>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
