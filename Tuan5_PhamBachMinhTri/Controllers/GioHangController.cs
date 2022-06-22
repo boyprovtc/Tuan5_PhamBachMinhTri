@@ -110,7 +110,7 @@ namespace Tuan5_PhamBachMinhTri.Controllers
             return RedirectToAction( "GioHang"); 
          }
 
-
+        [HttpGet]
         public ActionResult DatHang()
         {
             if(Session["TaiKhoan"] == null || Session ["TaiKhoan"].ToString() == "")
@@ -135,7 +135,7 @@ namespace Tuan5_PhamBachMinhTri.Controllers
             Sach s = new Sach();
 
             List<Giohang> gh = LayGioHang();
-            var ngaygiao = String.Format("{0:MM/dd/yyyy",collection["NgayGiao"]);
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}",collection["NgayGiao"]);
 
             dh.makh = kh.makh;
             dh.ngaydat = DateTime.Now;
