@@ -17,10 +17,10 @@ namespace Tuan5_PhamBachMinhTri.Models
         public string hinh { get; set; }
 
         [Display(Name = "Gia Ban")]
-        public string giaban { get; set; }
+        public Double giaban { get; set; }
 
         [Display(Name = "So luong")]
-        public string iSoluong { get; set; }
+        public int iSoluong { get; set; }
         [Display(Name = "Thanh tien")]
         public Double dThanhtien
         {

@@ -39,7 +39,7 @@
 
                 @Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } }) @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
                 <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-                <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" /> <img src="@Model.hinh" id="pictureUpload" />
+                <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" /> <img src="@Model.hinh" id="pictureUpload" width="200px"/>
             </div>
         </div>
 

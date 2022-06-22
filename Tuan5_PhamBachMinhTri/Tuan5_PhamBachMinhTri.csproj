@@ -272,10 +272,11 @@
     <Content Include="Views\Sach\Edit.cshtml" />
     <Content Include="Views\Sach\Create.cshtml" />
     <Content Include="Views\Sach\Delete.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GioHang\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
