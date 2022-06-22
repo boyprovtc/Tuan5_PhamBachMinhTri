@@ -109,5 +109,65 @@ namespace Tuan5_PhamBachMinhTri.Controllers
             lstGiohang.Clear();
             return RedirectToAction( "GioHang"); 
          }
+
+
+        public ActionResult DatHang()
+        {
+            if(Session["TaiKhoan"] == null || Session ["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+            List<Giohang> lstGioHang = LayGioHang();
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            ViewBag.TongSoLuongSanPham = TongSoLuongSanPham();
+            return View(lstGioHang);
+        }
+
+        public ActionResult DatHang(FormCollection collection)
+        {
+            DonHang dh = new DonHang();
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            Sach s = new Sach();
+
+            List<Giohang> gh = LayGioHang();
+            var ngaygiao = String.Format("{0:MM/dd/yyyy",collection["NgayGiao"]);
+
+            dh.makh = kh.makh;
+            dh.ngaydat = DateTime.Now;
+            dh.ngaygiao = DateTime.Parse(ngaygiao);
+            dh.giaohang = false;
+            dh.thanhtoan = false;
+
+
+            data.DonHangs.InsertOnSubmit(dh);
+            data.SubmitChanges();
+            foreach(var item in gh)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.madon = dh.madon;
+                ctdh.masach = item.masach;
+                ctdh.soluong = item.iSoluong;
+                ctdh.gia = (decimal)item.giaban;
+                s = data.Saches.Single(n => n.masach == item.masach);
+                s.soluongton -= ctdh.soluong;
+                data.SubmitChanges();
+
+                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            }
+
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+            return RedirectToAction("XacNhanDonHang", "GioHang");
+        }
+        public ActionResult XacNhanDonHang()
+        {
+            return View();
+        }
+
     }
 }
